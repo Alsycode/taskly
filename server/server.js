@@ -21,7 +21,9 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/customers', customerRoutes);
-
+app.get('/status', (req, res) => {
+  res.json({ status: 'running', uptime: process.uptime() });
+});
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
