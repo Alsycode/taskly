@@ -28,7 +28,7 @@ function Register() {
     >
       <div className="bg-white/20 backdrop-blur-md rounded-xl p-8 max-w-sm w-full shadow-lg border border-white/30">
         <p className="text-blue-300 text-center text-xl uppercase tracking-widest mb-2 font-semibold">
-          Register for your Taskly account
+          Register for your FLOWCLIENT account
         </p>
         {error && <p className="text-red-400 mb-4">{error}</p>}
         <div className="space-y-5">
