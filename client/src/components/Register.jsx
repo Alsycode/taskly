@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { apiFetch } from "../utils/apiFetch"
 function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -8,22 +8,16 @@ function Register() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+ const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/auth/register', {
+      const data = await apiFetch('/api/auth/register', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password, name })
+        body: { email, password, name }
       });
-      const data = await response.json();
-      if (response.ok) {
-        navigate('/login');
-      } else {
-        setError(data.message);
-      }
+      navigate('/login');
     } catch (err) {
-      setError('Something went wrong');
+      setError(err.message || 'Something went wrong');
     }
   };
 
